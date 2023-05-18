@@ -1,22 +1,17 @@
-n = int(input())
-b = []
-c = {'read':'R', 'write':'W', 'execute':'X'}
-for i in range(n):
-    a = [s for s in input().split()]
-    b.append(a)
-    # fname = a[0]
-    # if a[1] == 'W' or a[2] == 'W' or a[3] == 'W':
-    #     wperm = True
-    # elif a[1] == 'R' or a[2] == 'R' or a[R] == 'W':
-    #     rperm = True
-    # elif a[1] == 'X' or a[2] == 'X' or a[3] == 'X':
-    #     xperm = True
+OPERATION_PERMISSION = {
+    'read': 'R',
+    'write': 'W',
+    'execute': 'X',
+}
 
-for row in b:
-    print(' '.join(row))   
+file_permissions = {}
+for i in range(int(input())):
+    file, *permissions = input().split()
+    file_permissions[file] = set(permissions)
 
-x = int(input())
-d = []
-for i in range(x):
-    c = [s for s in input().split()]
-    d.append(c)
+for i in range(int(input())):
+    operation, file = input().split()
+    if OPERATION_PERMISSION[operation] in file_permissions[file]:
+        print('OK')
+    else:
+        print('Access denied')
